@@ -1,0 +1,18 @@
+<footer>
+	<nav>
+
+<span class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+	{{#power-select
+		options=languages
+		matchTriggerWidth=false
+		selected=selectedLanguage
+		placeholder=selectedLanguage.name
+		onchange=(action (mut selectedLanguage))
+		as |language|
+	}}
+	  <img src="{{language.flagUrl}}" class="icon-flag"> <strong>{{language.name}}</strong>
+	{{/power-select}}
+</span>
+
+	</nav>
+</footer>

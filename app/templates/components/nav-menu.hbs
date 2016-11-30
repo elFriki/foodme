@@ -1,0 +1,42 @@
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+
+	    <div class="navbar-header">
+
+		<button {{action 'toggleMenu'}} type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+<span>
+{{link-to (t brand) 'index' class="navbar-brand"}}
+</span>
+	    </div>
+
+	    <div class="collapse navbar-collapse {{if isMenuOpened 'in'}}" id="navbar">
+
+	        <ul class="nav navbar-nav">
+				{{#each menuLinks as |link|}}
+
+<span {{action 'toggleMenu'}}>
+	{{link-to (t link.label) link.url class="navbar-brand"}}
+</span>
+
+				{{/each}}
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown {{if dropdownOpen 'open'}}">
+					<a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" {{action 'toggleDropdown'}}><img src="{{t 'localeFlag'}}" class="icon-flag carret"></a>
+					<ul class="dropdown-menu">
+				{{#each languages as |language|}}
+<li><a href="#" {{action 'changeLocale' language.code}} name="{{language.code}}"><img src="{{language.flagUrl}}" class="icon-flag"> {{language.name}}</a></li>
+				{{/each}}
+					</ul>
+				</li>
+			</ul>
+
+	    </div>
+	</div>
+</nav>

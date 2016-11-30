@@ -1,0 +1,6 @@
+<div class="container-fluid">
+<!--img src="{{t 'localeFlag'}}" class="icon-flag">-<img src="http://www.ember-power-select.com/flags/{{locale}}.svg" class="icon-flag"-->
+{{nav-menu brand=appName menuLinks=menuLinks languages=languages}}
+{{outlet}}
+{{my-footer languages=languages selectedLanguage=selectedLanguage}}
+</div>

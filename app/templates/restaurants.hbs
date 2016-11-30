@@ -1,0 +1,213 @@
+
+<!--
+<nav class="navbar navbar-default">
+
+
+
+	<div class="container-fluid">
+	    <div class="navbar-header">
+		<button {{action 'toggleMenu'}} type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarRestaurants" aria-controls="navbar">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<span class="navbar-brand">{{t "filterRestaurants"}}</span>
+
+	    </div>
+
+	    <div class="collapse navbar-collapse {{if isMenuOpened 'in'}}" id="navbarRestaurants">
+	        <ul class="nav navbar-nav">
+-->
+<!--
+	<ul class="nav navbar-nav" {{action 'toggleMenu'}}>
+		<li class="dropdown {{if dropdownRatingOpen 'open'}}">
+			<a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" {{action 'toggleRatingDropdown'}}>{{t 'rating'}}</a>
+			<ul class="dropdown-menu">
+<li>
+<a href="#" {{action 'toggleRatingDropdown'}}>
+{{star-rating item=this rating=myRating action="updateRating"}}
+</a>
+</li>
+{{#if myRating}}
+<li>
+<a href="#" {{action 'clearRating'}}>
+<span class="glyphicon glyphicon-remove"></span>
+</a>
+</li>
+{{/if}}
+			</ul>
+		</li>
+	</ul>
+-->
+<!--
+	<ul class="nav navbar-nav btn {{if myPrice 'btn-danger'}} {{unless myPrice 'btn-info'}}" {{action 'toggleMenu'}}>
+		<li class="dropdown {{if dropdownPriceOpen 'open'}}">
+			<a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" {{action 'togglePriceDropdown'}}>...€ / ...$</a>
+			<ul class="dropdown-menu">
+<li>
+<a href="#" {{action 'togglePriceDropdown'}}>
+{{star-rating item=this rating=myPrice action="updatePrice"}}
+</a>
+</li>
+{{#if myPrice}}
+<li>
+<a href="#" {{action 'clearPrice'}}>
+<span class="glyphicon glyphicon-remove"></span>
+</a>
+</li>
+{{/if}}
+			</ul>
+		</li>
+	</ul>
+-->
+<!--
+			</ul>
+	    </div>
+	</div>
+</nav>
+-->
+
+<nav class="navbar" title="{{t "filterRestaurants"}}">
+
+	<div class="container-fluid">
+<div class="progress" title="{{t "filterRestaurants"}}">
+	<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{showingRestaurants}}" aria-valuemin="0" aria-valuemax="{{totalRestaurants}}" style="width: {{porcentaje}}%;">
+{{showingRestaurants}}
+	</div>
+	<span class="badge">{{totalRestaurants}}</span>
+</div>
+	</div>
+
+	<div class="container-fluid">
+
+<span class="btn {{if selectedCuisins 'btn-success'}} {{unless selectedCuisins 'btn-info'}}" {{action 'toggleMenu'}}>
+{{#power-select-multiple
+    options=CUISINE_OPTIONS
+    matchTriggerWidth=false
+    selected=selectedCuisins
+    placeholder=(t 'selectCuisins')
+    onchange=(action (mut selectedCuisins))
+    as |cuisine|}}
+	{{t cuisine.name}}
+{{/power-select-multiple}}
+</span>
+
+<span class="btn {{if myRating 'btn-success'}} {{unless myRating 'btn-info'}}" title="{{t 'rating'}}">
+<ul class="nav">
+<li>
+{{star-rating item=this rating=myRating action="updateRating"}}
+</li>
+<li>
+{{star-rating item=this rating=myMinRating action="updateMinRating"}}
+</li>
+{{#if myRating}}
+<li {{action 'clearRating'}}>
+<span class="glyphicon glyphicon-remove"></span>
+</li>
+{{/if}}
+</ul>
+</span>
+
+<span class="btn {{if myRating 'btn-success'}} {{unless myRating 'btn-info'}}" title="{{t 'rating'}}">
+<ul class="nav">
+<li {{action 'sorted' "rating:asc"}}>
+<span class="glyphicon glyphicon-sort-by-attributes"></span>
+</li>
+<li {{action 'sorted' "rating:desc"}}>
+<span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+</li>
+</ul>
+</span>
+
+
+<span class="btn {{if myPrice 'btn-success'}} {{unless myPrice 'btn-info'}}" title="...€">
+<ul class="nav">
+<li>
+{{star-rating item=this rating=myPrice action="updatePrice"}}
+</li>
+<li>
+{{star-rating item=this rating=myMinPrice action="updateMinPrice"}}
+</li>
+{{#if myPrice}}
+<li {{action 'clearPrice'}}>
+<span class="glyphicon glyphicon-remove"></span>
+</li>
+{{/if}}
+</ul>
+</span>
+
+<span class="btn {{if myPrice 'btn-success'}} {{unless myPrice 'btn-info'}}" title="...€">
+<ul class="nav">
+<li {{action 'sorted' "price:asc"}}>
+<span class="glyphicon glyphicon-sort-by-attributes"></span>
+</li>
+<li {{action 'sorted' "price:desc"}}>
+<span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+</li>
+</ul>
+</span>
+
+
+
+
+
+{{#if moreThanOnePage}}
+<span class="nav navbar-nav navbar-right">
+
+<button class="btn {{if isFirstPage 'btn-danger'}} {{unless isFirstPage 'btn-success'}}" {{action 'goFirst'}} disabled={{isFirstPage}}><span class="badge">1</span> <span class="glyphicon glyphicon-fast-backward"></span></button>
+
+<button class="btn  {{if isFirstPage 'btn-danger'}} {{unless isFirstPage 'btn-success'}}" {{action 'goPrevious'}} disabled={{isFirstPage}}>
+	<span aria-label="Previous" class="glyphicon glyphicon-backward"></span>
+</button>
+
+<button class="btn btn-info" disabled=true>
+	<span class="badge">{{currentPage}}</span>
+</button>
+
+<button class="btn {{if isLastPage 'btn-danger'}} {{unless isLastPage 'btn-success'}}" {{action 'goNext'}} disabled={{isLastPage}}>
+	<span aria-label="Next" class="glyphicon glyphicon-forward"></span>
+</button>
+<button class="btn {{if isLastPage 'btn-danger'}} {{unless isLastPage 'btn-success'}}" {{action 'goLast'}} disabled={{isLastPage}}>
+	<span class="glyphicon glyphicon-fast-forward"></span> <span class="badge">{{countPages}}</span>
+</button>
+</span>
+{{/if}}
+
+	</div>
+</nav>
+
+
+<div class="container-fluid">
+
+<div class="row-fluid">
+{{#each getPage as |restaurant|}}
+  <div class="col-sm-6 col-md-4">
+	<div class="media panel panel-default">
+	    <a class="media-left"><img class="media-object" src="{{retaurantImg restaurant.id}}"></a>
+	    <div class="media-body">
+		    <p class="media-heading"><strong>{{restaurant.name}}</strong></p><p><span class="label label-info">{{restaurant.location}}</span></p>
+			<p title="{{t 'rating'}}">
+			{{star-rating item=restaurant rating=restaurant.rating maxRating=5}}
+			</p>
+			<p title="... €">
+			{{star-rating item=restaurant rating=restaurant.price maxRating=5}}</p>
+			<p>{{t "cuisine"}}: <span class="label label-info">{{t restaurant.cuisine}}</span></p>
+
+	    </div>
+	    <div class="media-footer">
+			<p class="media-body">{{t "works.days"}}
+			{{#each (dayOfTheWeek restaurant.days) as |day|}}
+				{{t day}}
+			{{/each}}. {{t "works.openHour"}} {{restaurant.opens}} {{t "works.closeHour"}} {{restaurant.closes}}
+			</p>
+			<p>{{restaurant.description}}</p>
+	    </div>
+	</div>
+
+  </div>
+{{/each}}
+
+	</div>
+</div>
+
