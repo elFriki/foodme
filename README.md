@@ -5,7 +5,11 @@ A short introduction of this app could easily go here.
 
 ## Prerequisites
 
-You will need the following things properly installed on your computer.
+You will need the following things properly installed on your computer. 
+Si eres del ANS, no tienes wifi, tienes un equipo plataformado con windows y o tienes un proxy:
+
+SET HTTP_PROXY=http://usuario:****@proxyvip.igrupobbva:8080
+SET HTTPS_PROXY=http://usuario:****@proxyvip.igrupobbva:8080
 
 * [Git](http://git-scm.com/)
 * [Node.js](http://nodejs.org/) (with NPM)
