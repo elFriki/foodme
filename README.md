@@ -14,9 +14,9 @@ SET HTTPS_PROXY=http://usuario:****@proxyvip.igrupobbva:8080
 
 * [Git](http://git-scm.com/)
 * [Node.js](http://nodejs.org/) (with NPM)
-* [Bower](http://bower.io/)
-* [Ember CLI](http://ember-cli.com/)
-* [PhantomJS](http://phantomjs.org/)
+* [Bower](http://bower.io/) -> npm -g install bower
+* [Ember CLI](http://ember-cli.com/) -> npm -g install ember-cli
+* [PhantomJS](http://phantomjs.org/) -> npm -g install phantomjs
 
 ## Installation
 
