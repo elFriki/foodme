@@ -130,7 +130,6 @@ export default Ember.Controller.extend({
 	    	}
 
 	    	if ( this.myRating !== 0  || this.myMinRating !== 0 ) {
-    			let value = filtered;
     			let filteredTotalRating = [];
 				for ( let i = this.myMinRating; i <= this.myRating; i++ ) {
 	    			let filteredRating = filtered.filterBy('rating', i);
@@ -143,7 +142,6 @@ export default Ember.Controller.extend({
 	    	}
 
 	    	if ( this.myPrice !== 0 ) {
-    			let value = filtered;
     			let filteredTotalPrice = [];
 				for ( let i = 1; i <= this.myPrice; i++ ) {
 	    			let filteredPrice = filtered.filterBy('price', i);

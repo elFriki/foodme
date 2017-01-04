@@ -10,7 +10,7 @@ const days = [
 	"saturday"
 ];
 
-export function dayOfTheWeek(params, hash = {}) {
+export function dayOfTheWeek(params) {
 	let value = Array.isArray(params) ? params[0] : params;
 
 	let dias = [];
@@ -22,4 +22,3 @@ export function dayOfTheWeek(params, hash = {}) {
 
 
 export default Ember.Helper.helper(dayOfTheWeek);
-
