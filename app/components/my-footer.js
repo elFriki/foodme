@@ -13,7 +13,6 @@ export default Ember.Component.extend({
 
 	onLocaleChanged: Ember.observer('locale',
 		function() {
-			let codigoSel = this.get('selectedLanguage.code');
 			let sel = this.get('languages').findBy('code', this.get('locale'));
 			this.set('selectedLanguage', sel);
 		})
